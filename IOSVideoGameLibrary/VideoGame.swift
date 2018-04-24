@@ -7,29 +7,19 @@
 //
 
 import Foundation
+import RealmSwift
 
-class VideoGame {
-    var name: String
-    var genre: Genre
+@objcMembers class VideoGame: Object {
+    dynamic var name: String = ""
+    dynamic var genre: String = ""
     
-    var dueGame: Date? = nil
-    var avaliability: Bool {
-        return dueGame == nil
+    dynamic var dueDate: Date? = nil
+    dynamic var availability: Bool {
+        return dueDate == nil
     }
     
-    enum Genre: String {
-        case rpg = "RPG"
-        case shooter = "Shooter"
-        case platformer = "Platformer"
-        case battleRoyale = "Battle Royal"
-        case mmorpg = "MMORPG"
-        case sandbox = "Sandbox"
-        case fighttingGame = "Fighting Game"
-        case survival = "Survival Game"
-        
-    }
-    
-    init(name: String, genre: Genre) {
+    convenience init(name: String, genre: String) {
+        self.init()
         self.name = name
         self.genre = genre
     }

@@ -8,18 +8,23 @@
 
 import UIKit
 
-class GamesViewController: UITableViewController {
+class GamesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    let gameManager = GameManager.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -27,16 +32,39 @@ class GamesViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gameManager.getGameCount()
     }
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell") as! VideoGameViewCell
+        cell.configure(with: gameManager.getGame(indexPath.row))
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 67.5
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let game  = gameManager.getGame(indexPath.row)
+        
+        let checkOutAction = UITableViewRowAction(style: .normal, title: game.availability ? "Check Out" : "Check In") { (_, _) in
+            self.gameManager.checkInOrOut(game: game)
+            tableView.reloadData()
+        }
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, _) in
+            self.gameManager.delete(game)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        return [deleteAction,checkOutAction]
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -91,5 +119,9 @@ class GamesViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func unwindToGameLibrary(_ segue: UIStoryboardSegue) {
+        tableView.reloadData()
+    }
 
 }

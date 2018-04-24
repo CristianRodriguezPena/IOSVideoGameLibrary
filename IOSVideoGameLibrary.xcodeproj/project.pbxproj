@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B2AE97C7DD067AF5C9B3245 /* Pods_IOSVideoGameLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BE41C8B29A77A36E200507 /* Pods_IOSVideoGameLibrary.framework */; };
+		A400820F20890B980063102A /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A400820E20890B980063102A /* GameManager.swift */; };
+		A4008216208915350063102A /* VideoGameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4008215208915350063102A /* VideoGameViewCell.swift */; };
 		A43470B1207FE136006F704A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43470B0207FE136006F704A /* AppDelegate.swift */; };
 		A43470B3207FE136006F704A /* AddGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43470B2207FE136006F704A /* AddGameViewController.swift */; };
 		A43470B6207FE136006F704A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A43470B4207FE136006F704A /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		12AFB5F97A8094F06667DA2D /* Pods-IOSVideoGameLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSVideoGameLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-IOSVideoGameLibrary/Pods-IOSVideoGameLibrary.release.xcconfig"; sourceTree = "<group>"; };
 		88D04B769B3D5ECFA08D20D8 /* Pods-IOSVideoGameLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSVideoGameLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IOSVideoGameLibrary/Pods-IOSVideoGameLibrary.debug.xcconfig"; sourceTree = "<group>"; };
+		A400820E20890B980063102A /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		A4008215208915350063102A /* VideoGameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGameViewCell.swift; sourceTree = "<group>"; };
 		A43470AD207FE136006F704A /* IOSVideoGameLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSVideoGameLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43470B0207FE136006F704A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A43470B2207FE136006F704A /* AddGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				A43470B0207FE136006F704A /* AppDelegate.swift */,
 				A4BC0CD5208682AD00F09055 /* GamesViewController.swift */,
 				A43470B2207FE136006F704A /* AddGameViewController.swift */,
+				A4008215208915350063102A /* VideoGameViewCell.swift */,
+				A400820E20890B980063102A /* GameManager.swift */,
 				A4D783DF2087CBEF00CF25C7 /* VideoGame.swift */,
 				A43470B4207FE136006F704A /* Main.storyboard */,
 				A43470BA207FE136006F704A /* Assets.xcassets */,
@@ -133,6 +139,7 @@
 				TargetAttributes = {
 					A43470AC207FE136006F704A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -230,6 +237,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D783E02087CBEF00CF25C7 /* VideoGame.swift in Sources */,
+				A400820F20890B980063102A /* GameManager.swift in Sources */,
+				A4008216208915350063102A /* VideoGameViewCell.swift in Sources */,
 				A4BC0CD6208682AD00F09055 /* GamesViewController.swift in Sources */,
 				A43470B3207FE136006F704A /* AddGameViewController.swift in Sources */,
 				A43470B9207FE136006F704A /* IOSVideoGameLibrary.xcdatamodeld in Sources */,
@@ -371,11 +380,13 @@
 			baseConfigurationReference = 88D04B769B3D5ECFA08D20D8 /* Pods-IOSVideoGameLibrary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IOSVideoGameLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Cristian.IOSVideoGameLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -386,6 +397,7 @@
 			baseConfigurationReference = 12AFB5F97A8094F06667DA2D /* Pods-IOSVideoGameLibrary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IOSVideoGameLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

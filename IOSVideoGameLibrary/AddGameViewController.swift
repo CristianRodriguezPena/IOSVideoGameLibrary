@@ -12,7 +12,9 @@ class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genrePicker: UIPickerView!
     
-    let genres = ["RPG","Shooter","Strategy","Platformer","Action RPG", "Battle Royale", "MMORPG", "Sandbox", "Fighting Game", "Survival Game"]
+    let gameManager = GameManager.sharedInstance
+    
+    let genres = ["RPG","Shooter","Strategy","Platformer","Action RPG", "Battle Royale", "MMORPG", "Sandbox", "Fighting Game", "survival Game"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,8 @@ class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
         } else {
-            
+            gameManager.create(VideoGame(name: nameTextField.text!, genre: genres[genrePicker.selectedRow(inComponent: 0)]))
+            self.performSegue(withIdentifier: "unwindToGameLibrary", sender: self)
         }
     }
 
